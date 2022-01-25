@@ -8,12 +8,21 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 
+import android.util.Log;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.os.Build;
+
 @ReactModule(name = VibrationEffectModule.NAME)
 public class VibrationEffectModule extends ReactContextBaseJavaModule {
     public static final String NAME = "VibrationEffect";
 
+    ReactApplicationContext reactContext;
+
+
     public VibrationEffectModule(ReactApplicationContext reactContext) {
         super(reactContext);
+        this.reactContext = reactContext;
     }
 
     @Override
@@ -22,13 +31,53 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
         return NAME;
     }
 
-
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
-    @ReactMethod
-    public void multiply(int a, int b, Promise promise) {
-        promise.resolve(a * b);
+    private boolean checkVersion() {
+        return Build.VERSION.SDK_INT >= 26;
     }
 
-    public static native int nativeMultiply(int a, int b);
+    @ReactMethod
+    public void canCreateWaveform(final Promise promise) {
+        promise.resolve(this.checkVersion());
+    }
+
+    @ReactMethod
+    public void createWaveform(ReadableArray timings, double repeat)
+    public void createWaveform(ReadableArray timings, ReadableArray amplitudes, double repeat) {
+        Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
+
+        if (v != null && this.checkVersion()) {
+
+            // Conversions
+            long[] _timings = new long[timings.size()];
+            for (int i = 0; i < timings.size(); i++) {
+                _timings[i] = timings.getInt(i);
+            }
+
+            int _repeat = (int) repeat;
+
+            if (amplitudes != null) {
+
+                // Conversion
+                long[] _amplitudes = new long[amplitudes.size()];
+                for (int i = 0; i < amplitudes.size(); i++) {
+                    _amplitudes[i] = amplitudes.getInt(i);
+                }
+
+                VibrationEffect effect = VibrationEffect.createWaveform(_timings, _repeat);
+                v.vibrate(effect);
+            } else {
+                VibrationEffect effect = VibrationEffect.createWaveform(_timings, _amplitudes, _repeat);
+                v.vibrate(effect);
+            }
+        }
+    }
+
+    @ReactMethod
+    public void cancel() {      
+        Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
+
+        if (v != null) {
+            v.cancel();
+        }
+    }
 }
