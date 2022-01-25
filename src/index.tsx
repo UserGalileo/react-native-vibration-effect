@@ -20,3 +20,15 @@ const VibrationEffect = NativeModules.VibrationEffect
 export function multiply(a: number, b: number): Promise<number> {
   return VibrationEffect.multiply(a, b);
 }
+
+export function canCreateWaveform(): Promise<boolean> {
+  return VibrationEffect.canCreateWaveform();
+}
+
+export function cancel(): void {
+  VibrationEffect.cancel();
+}
+
+export function createWaveform(timings: number[], amplitudes: number[], repeat: number) {
+  VibrationEffect.createWaveform(timings, amplitudes, repeat);
+}
