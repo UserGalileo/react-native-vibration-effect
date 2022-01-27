@@ -17,8 +17,8 @@ const VibrationEffect = NativeModules.VibrationEffect
       }
     );
 
-export function canCreateWaveform(): Promise<boolean> {
-  return VibrationEffect.canCreateWaveform();
+export function hasAmplitudeControl(): Promise<boolean> {
+  return VibrationEffect.hasAmplitudeControl();
 }
 
 export function cancel(): void {

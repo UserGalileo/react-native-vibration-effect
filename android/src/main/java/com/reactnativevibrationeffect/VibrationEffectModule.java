@@ -38,8 +38,9 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void canCreateWaveform(final Promise promise) {
-        promise.resolve(this.checkVersion());
+    public void hasAmplitudeControl(final Promise promise) {
+        Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
+        promise.resolve(v.hasAmplitudeControl());
     }
 
     @ReactMethod
