@@ -1,6 +1,6 @@
 {
   "name": "react-native-vibration-effect",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Android's VibrationEffect for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
