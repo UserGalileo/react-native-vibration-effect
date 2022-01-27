@@ -19,12 +19,8 @@ import android.content.Context;
 public class VibrationEffectModule extends ReactContextBaseJavaModule {
     public static final String NAME = "VibrationEffect";
 
-    ReactApplicationContext reactContext;
-
-
     public VibrationEffectModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.reactContext = reactContext;
     }
 
     @Override
@@ -38,14 +34,14 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void hasAmplitudeControl(final Promise promise) {
-        Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
+    public void canControlAmplitude(final Promise promise) {
+        Vibrator v = (Vibrator) getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
         promise.resolve(v != null && v.hasAmplitudeControl());
     }
 
     @ReactMethod
     public void createWaveform(ReadableArray timings, ReadableArray amplitudes, double repeat) {
-        Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator v = (Vibrator) getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
 
         if (v != null && this.checkVersion()) {
 
@@ -76,7 +72,7 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void cancel() {      
-        Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator v = (Vibrator) getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
 
         if (v != null) {
             v.cancel();

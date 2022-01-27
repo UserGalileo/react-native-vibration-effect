@@ -17,8 +17,8 @@ const VibrationEffect = NativeModules.VibrationEffect
       }
     );
 
-export function hasAmplitudeControl(): Promise<boolean> {
-  return VibrationEffect.hasAmplitudeControl();
+export function canControlAmplitude(): Promise<boolean> {
+  return VibrationEffect.canControlAmplitude();
 }
 
 export function cancel(): void {
