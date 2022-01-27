@@ -43,7 +43,6 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void createWaveform(ReadableArray timings, double repeat);
     public void createWaveform(ReadableArray timings, ReadableArray amplitudes, double repeat) {
         Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
 
