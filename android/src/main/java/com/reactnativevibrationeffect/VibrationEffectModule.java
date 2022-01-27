@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 
+import com.facebook.react.bridge.ReadableArray;
 import android.util.Log;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
