@@ -59,7 +59,7 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
             if (amplitudes != null) {
 
                 // Conversion
-                long[] _amplitudes = new long[amplitudes.size()];
+                int[] _amplitudes = new int[amplitudes.size()];
                 for (int i = 0; i < amplitudes.size(); i++) {
                     _amplitudes[i] = amplitudes.getInt(i);
                 }
