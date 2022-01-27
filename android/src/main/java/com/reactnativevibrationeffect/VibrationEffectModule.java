@@ -57,7 +57,7 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
 
             int _repeat = (int) repeat;
 
-            if (amplitudes != null) {
+            if (amplitudes != null && v.hasAmplitudeControl()) {
 
                 // Conversion
                 int[] _amplitudes = new int[amplitudes.size()];
