@@ -64,10 +64,10 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
                     _amplitudes[i] = amplitudes.getInt(i);
                 }
 
-                VibrationEffect effect = VibrationEffect.createWaveform(_timings, _repeat);
+                VibrationEffect effect = VibrationEffect.createWaveform(_timings, _amplitudes, _repeat);
                 v.vibrate(effect);
             } else {
-                VibrationEffect effect = VibrationEffect.createWaveform(_timings, _amplitudes, _repeat);
+                VibrationEffect effect = VibrationEffect.createWaveform(_timings, _repeat);
                 v.vibrate(effect);
             }
         }
