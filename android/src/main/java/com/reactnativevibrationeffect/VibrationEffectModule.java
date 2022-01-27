@@ -40,7 +40,7 @@ public class VibrationEffectModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void hasAmplitudeControl(final Promise promise) {
         Vibrator v = (Vibrator) reactContext.getSystemService(Context.VIBRATOR_SERVICE);
-        promise.resolve(v && v.hasAmplitudeControl());
+        promise.resolve(v != null && v.hasAmplitudeControl());
     }
 
     @ReactMethod
